@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 using StudentManagement.ConsoleApp.Interfaces;
 using StudentManagement.ConsoleApp.Models;
 
@@ -63,8 +64,11 @@ public class ConsoleMenu
 					case "5":
 						DeleteStudent();
 						break;
+					case "6":
+						DisplayApplicationInformation();
+						break;
 					default:
-						Console.WriteLine("Please select an option from 0 to 5.");
+						Console.WriteLine("Please select an option from 0 to 6.");
 						break;
 				}
 			}
@@ -95,6 +99,7 @@ public class ConsoleMenu
 		Console.WriteLine("4. Update a student");
 		Console.WriteLine("5. Delete a student");
 		Console.WriteLine("0. Exit");
+		Console.WriteLine("6. Display Application Information");
 	}
 
 	private void AddStudent()
@@ -312,5 +317,16 @@ public class ConsoleMenu
 	private static string ReadInput()
 	{
 		return Console.ReadLine() ?? throw new EndOfStreamException();
+	}
+
+	private static void DisplayApplicationInformation()
+	{
+		var version = Assembly.GetEntryAssembly()?.GetName().Version?.ToString() ?? "Unknown";
+
+		Console.WriteLine("\nApplication Information");
+		Console.WriteLine("Application Name: Student Management Console Application");
+		Console.WriteLine($"Application Version: {version}");
+		Console.WriteLine(
+			"Description: A console application for adding, displaying, searching, updating, and deleting student records.");
 	}
 }
