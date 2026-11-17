@@ -1,0 +1,44 @@
+name: Student Management CI/CD
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  release:
+    types: [created]
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore StudentManagementConsoleApplication/StudentManagementConsoleApplication.csproj
+
+      - name: Build application
+        run: dotnet build StudentManagementConsoleApplication/StudentManagementConsoleApplication.csproj --configuration Release --no-restore
+
+      - name: Publish application
+        if: github.event_name != 'pull_request'
+        run: dotnet publish StudentManagementConsoleApplication/StudentManagementConsoleApplication.csproj --configuration Release --output ./publish
+
+      - name: Upload published output
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v2
+        with:
+          name: published-output
+          path: ./publish

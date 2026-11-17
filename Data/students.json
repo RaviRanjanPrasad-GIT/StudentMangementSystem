@@ -1,0 +1,18 @@
+[
+  {
+    "StudentId": 1,
+    "FirstName": "Ravi",
+    "LastName": "Ranjan",
+    "Email": "raviranjan.prasad@gmail.com",
+    "Age": 35,
+    "Course": "dot net"
+  },
+  {
+    "StudentId": 2,
+    "FirstName": "Ravi",
+    "LastName": "Prasad",
+    "Email": "ravi.prasad@gmail.com",
+    "Age": 37,
+    "Course": "C Sharp"
+  }
+]
