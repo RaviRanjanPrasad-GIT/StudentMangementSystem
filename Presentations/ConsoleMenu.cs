@@ -98,8 +98,8 @@ public class ConsoleMenu
 		Console.WriteLine("3. Search for a student");
 		Console.WriteLine("4. Update a student");
 		Console.WriteLine("5. Delete a student");
-		Console.WriteLine("0. Exit");
 		Console.WriteLine("6. Display Application Information");
+		Console.WriteLine("0. Exit");
 	}
 
 	private void AddStudent()
